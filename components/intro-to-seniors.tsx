@@ -39,7 +39,7 @@ const StudentCard = ({ student }: StudentCardProps) => {
                 <h3 className="font-display text-[18px] md:text-[20px] text-black dark:text-white font-bold mb-2 tracking-tight uppercase">
                     {student.name}
                 </h3>
-                <p className="font-mono text-[10px] text-gray-500 dark:text-[#666666] uppercase tracking-[0.2em] leading-relaxed">
+                <p className="font-mono text-[12px] text-gray-500 dark:text-[#666666] uppercase tracking-[0.2em] leading-relaxed">
                     {student.track}
                 </p>
                 <div className="mt-8 grow flex items-end">

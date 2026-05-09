@@ -52,7 +52,10 @@ CRITICAL RULES:
    - "Boys" -> "বালক"
    - "Girls" -> "বালিকা"
    Do not just transliterate "School" as "স্কুল" or "High" as "হাই", you must translate their meaning.
-3. TRANSLITERATE PROPER NOUNS: For names of people, specific places, or unique entities (e.g., "Dhaka", "Mirpur", "Adamjee"), simply transliterate them phonetically into Bangla script (e.g., "Dhaka" -> "ঢাকা").
+3. FAMOUS INSTITUTIONS & PROPER NOUNS:
+   - Analyze school and college names to see if they are well-known Bangladeshi institutions. If they are, use their STANDARD widely accepted Bangla spelling.
+   - CRITICAL EXAMPLES: "Adamjee" MUST be spelled "আদমজী" (NOT "অ্যাডামজি"). "Notre Dame" MUST be spelled "নটর ডেম". "Dhaka" MUST be spelled "ঢাকা".
+   - For other general proper nouns, transliterate them naturally into Bangla script.
 4. NAME PRESERVATION: Transliterate the user's name exactly as provided. NEVER alter, auto-correct, or guess the spelling (e.g., "Ismail" MUST remain "ইসমাইল" and NOT be changed to "ইসলামী").
 
 Do not include any extra text or conversation, just return the final Bangla introduction.`;
