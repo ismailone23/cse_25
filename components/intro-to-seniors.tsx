@@ -64,7 +64,7 @@ export default function IntroToSeniors() {
     return (
         <div className="bg-gray-50 dark:bg-[#050505] text-black dark:text-white antialiased min-h-screen flex flex-col relative font-sans overflow-x-hidden">
             {/* Subtle Grid Background */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none"></div>
 
             <main className="grow pt-[100px] pb-[160px] relative z-10 flex flex-col items-center">
                 {/* Header Section */}
