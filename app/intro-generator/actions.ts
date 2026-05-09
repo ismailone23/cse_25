@@ -1,10 +1,35 @@
 "use server"
+import { headers } from "next/headers";
+
+type RateLimitData = { count: number, firstRequestTime: number };
+const rateLimitMap = new Map<string, RateLimitData>();
 
 export async function generateIntroAction(formData: Record<string, string>) {
-    const apiKey = process.env.OPENAI_API_KEY;
-    if (!apiKey) {
-        throw new Error("OPENAI_API_KEY is not set in the environment variables.");
-    }
+    try {
+        const headerList = await headers();
+        const ip = headerList.get("x-forwarded-for") || "unknown-ip";
+        
+        const now = Date.now();
+        const windowMs = 5 * 60 * 1000;
+        const limit = 2;
+        
+        const userLimitData = rateLimitMap.get(ip) || { count: 0, firstRequestTime: now };
+        
+        if (now - userLimitData.firstRequestTime > windowMs) {
+            userLimitData.count = 1;
+            userLimitData.firstRequestTime = now;
+        } else {
+            userLimitData.count++;
+            if (userLimitData.count > limit) {
+                return { success: false, error: "Rate limit exceeded. You can only generate 2 introductions per 5 minutes. Please wait and try again." };
+            }
+        }
+        rateLimitMap.set(ip, userLimitData);
+
+        const apiKey = process.env.OPENAI_API_KEY;
+        if (!apiKey) {
+            return { success: false, error: "OPENAI_API_KEY is not set in the environment variables." };
+        }
 
     const systemPrompt = `You are an expert translator and assistant. Your task is to generate a natural-sounding introduction entirely in the Bengali (Bangla) language, using the user's provided details.
 
@@ -60,12 +85,16 @@ Current Address: ${formData.currentArea}`;
         })
     });
 
-    if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        console.error("OpenAI Error:", errorData);
-        throw new Error("Failed to generate introduction from OpenAI.");
-    }
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            console.error("OpenAI Error:", errorData);
+            return { success: false, error: "Failed to generate introduction from OpenAI." };
+        }
 
-    const data = await response.json();
-    return data.choices[0].message.content;
+        const data = await response.json();
+        return { success: true, data: data.choices[0].message.content };
+    } catch (error: any) {
+        console.error(error);
+        return { success: false, error: "An unexpected error occurred." };
+    }
 }

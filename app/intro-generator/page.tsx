@@ -34,13 +34,18 @@ export default function IntroGenerator() {
         setGeneratedIntro("")
         setIsGenerating(true)
         try {
-            const intro = await generateIntroAction(formData)
-            setGeneratedIntro(intro)
-            setTimeout(() => {
-                outputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-            }, 100)
+            const result = await generateIntroAction(formData)
+            if (result.success && result.data) {
+                setGeneratedIntro(result.data)
+                setTimeout(() => {
+                    outputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                }, 100)
+            } else {
+                alert(result.error || "An error occurred.")
+            }
         } catch (error) {
             console.error(error)
+            alert("An unexpected error occurred while generating.")
         } finally {
             setIsGenerating(false)
         }
