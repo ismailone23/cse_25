@@ -43,10 +43,12 @@ const StudentCard = ({ student }: StudentCardProps) => {
                     {student.track}
                 </p>
                 <div className="mt-8 grow flex items-end">
-                    <a href={student.facebook} target="_mist" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[10px] font-mono text-gray-500 dark:text-[#666666] hover:text-[#0866FF] dark:hover:text-purple-400 transition-all duration-300 uppercase tracking-widest group-hover:translate-x-1">
-                        <Link className="w-4 h-4 transition-transform group-hover:scale-110" />
-                        <span>Profile</span>
-                    </a>
+                    {student.facebook && student.facebook !== "#" ? (
+                        <a href={`/api/track-profile?name=${encodeURIComponent(student.name)}&url=${encodeURIComponent(student.facebook)}`} target="_mist" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[10px] font-mono text-gray-500 dark:text-[#666666] hover:text-[#0866FF] dark:hover:text-purple-400 transition-all duration-300 uppercase tracking-widest group-hover:translate-x-1">
+                            <Link className="w-4 h-4 transition-transform group-hover:scale-110" />
+                            <span>Profile</span>
+                        </a>
+                    ) : null}
                 </div>
             </div>
         </motion.div>

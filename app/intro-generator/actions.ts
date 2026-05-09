@@ -2,12 +2,23 @@
 import { headers } from "next/headers";
 
 type RateLimitData = { count: number, firstRequestTime: number };
-const rateLimitMap = new Map<string, RateLimitData>();
+
+const globalForRateLimit = globalThis as unknown as {
+    rateLimitMap: Map<string, RateLimitData> | undefined;
+};
+
+const rateLimitMap = globalForRateLimit.rateLimitMap ?? new Map<string, RateLimitData>();
+
+if (process.env.NODE_ENV !== "production") {
+    globalForRateLimit.rateLimitMap = rateLimitMap;
+}
 
 export async function generateIntroAction(formData: Record<string, string>) {
     try {
         const headerList = await headers();
-        const ip = headerList.get("x-forwarded-for") || "unknown-ip";
+        const forwardedFor = headerList.get("x-forwarded-for");
+        const realIp = headerList.get("x-real-ip");
+        const ip = forwardedFor ? forwardedFor.split(',')[0].trim() : (realIp || "unknown-ip");
         
         const now = Date.now();
         const windowMs = 5 * 60 * 1000;
