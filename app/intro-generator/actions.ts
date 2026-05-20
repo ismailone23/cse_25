@@ -47,9 +47,8 @@ export async function generateIntroAction(formData: Record<string, string>) {
 You MUST follow this exact structure, replacing the bracketed placeholders with the user's data:
 "আসসালামু আলাইকুম, ভাই।
 আমার নাম [Name]
-আমার বাবা পেশায় একজন [Father's Occupation]। আমার মাতা পেশায় একজন [Mother's Occupation]।
-আমি [SSC Year] সালে [School] থেকে গড় দশমিক মান [SSC GPA] পেয়ে মাধ্যমিক পরীক্ষায় উত্তীর্ণ হয়েছি এবং আমি [HSC Year] সালে [College] থেকে গড় দশমিক মান [HSC GPA] পেয়ে উচ্চ মাধ্যমিক পরীক্ষায় উত্তীর্ণ হয়েছি। বর্তমানে আমি "সামরিক বিজ্ঞান ও প্রযুক্তি প্রতিষ্ঠান" এর "গণনাযন্ত্র বিজ্ঞান ও প্রকৌশল" বিভাগের ২৬ তম দলের ১ম বর্ষে অধ্যয়ন করছি।
-আমার স্থায়ী ঠিকানা: [From Area]। এবং বর্তমানে আমি [Current Area] আছি।
+আমি [SSC Year] সালে [School] থেকে গড় দশমিক মান [SSC GPA] পেয়ে মাধ্যমিক পরীক্ষায় উত্তীর্ণ হয়েছি এবং [HSC Year] সালে [College] থেকে গড় দশমিক মান [HSC GPA] পেয়ে উচ্চ মাধ্যমিক পরীক্ষায় উত্তীর্ণ হয়েছি। বর্তমানে আমি "সামরিক বিজ্ঞান ও প্রযুক্তি প্রতিষ্ঠান" এর "গণনাযন্ত্র বিজ্ঞান ও প্রকৌশল" বিভাগের ২৬ তম দলের ১ম বর্ষে অধ্যয়ন করছি।
+আমার স্থায়ী ঠিকানা: [From Area] এবং বর্তমানে আমি [Current Area] আছি।
 আসসালামু আলাইকুম, ভাই।"
 
 CRITICAL RULES:
@@ -73,8 +72,6 @@ Do not include any extra text or conversation, just return the final Bangla intr
 
     const userPrompt = `Fields:
 Name: ${formData.name}
-Father's Occupation: ${formData.fatherOcc}
-Mother's Occupation: ${formData.motherOcc}
 School: ${formData.school}
 SSC GPA: ${formData.sscGpa}
 SSC Year: ${formData.sscYear}
@@ -107,6 +104,7 @@ Current Address: ${formData.currentArea}`;
 
         const data = await response.json();
         return { success: true, data: data.choices[0].message.content };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         console.error(error);
         return { success: false, error: "An unexpected error occurred." };

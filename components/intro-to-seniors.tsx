@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { useState } from 'react'
 import studentData from '@/data/students.json';
 import { Link } from 'lucide-react';
+import Image from 'next/image';
 
 interface Student {
     id: number;
@@ -14,6 +15,7 @@ interface Student {
 
 interface StudentCardProps {
     student: Student;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     key?: any;
 }
 
@@ -27,9 +29,11 @@ const StudentCard = ({ student }: StudentCardProps) => {
         >
             <div className="p-8 md:p-12 border-b border-black/5 dark:border-white/5 flex items-center justify-center transition-colors duration-500 group-hover:border-transparent">
                 <div className="aspect-[1/1.2] w-full relative overflow-hidden rounded-sm bg-gray-200 dark:bg-[#1a1a1a]">
-                    <img
+                    <Image
                         src={student.image}
                         alt={student.name}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         className="w-full h-full object-contain grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 group-hover:brightness-105 transition-all duration-700"
                         referrerPolicy="no-referrer"
                     />

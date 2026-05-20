@@ -7,42 +7,62 @@ import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 
 export default function Navbar() {
-    const { theme, setTheme, resolvedTheme } = useTheme()
-    const [scrolled, setScrolled] = useState(false)
-    const [mounted, setMounted] = useState(false)
+  const { setTheme, resolvedTheme } = useTheme()
+  const [scrolled, setScrolled] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
-    useEffect(() => {
-        setMounted(true)
-    }, [])
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true)
+  }, [])
 
-    const toggleTheme = useCallback(() => {
-        setTheme(resolvedTheme === "dark" ? "light" : "dark")
-    }, [resolvedTheme, setTheme])
+  const toggleTheme = useCallback(() => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark")
+  }, [resolvedTheme, setTheme])
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 30)
-        }
-        window.addEventListener("scroll", handleScroll)
-        return () => window.removeEventListener("scroll", handleScroll)
-    }, [])
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
-    return (
-        <div className={cn(
-            "fixed top-0 w-full z-50 transition-all duration-300 flex items-center justify-center",
-            scrolled ? "bg-background/60 backdrop-blur-lg py-5 shadow-sm" : "bg-transparent py-7"
-        )}>
-            <div className="flex w-full px-6 max-w-7xl items-center justify-between">
-                <div className="flex">
-                    <Link href="/" className="font-bold text-xl tracking-tight">দ্বিমিক - ২৫</Link>
-                </div>
-                <div className="flex items-center gap-x-6">
-                    <Link href="/intro-generator" className="text-sm font-medium hover:text-primary transition-colors">Generator</Link>
-                    <Button variant="ghost" size="icon" onClick={() => toggleTheme()}>
-                        {mounted ? (resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />) : <div className="h-5 w-5" />}
-                    </Button>
-                </div>
-            </div>
+  return (
+    <div
+      className={cn(
+        "fixed top-0 z-50 flex w-full items-center justify-center transition-all duration-300",
+        scrolled
+          ? "bg-background/60 py-5 shadow-sm backdrop-blur-lg"
+          : "bg-transparent py-7"
+      )}
+    >
+      <div className="flex w-full max-w-7xl items-center justify-between px-6">
+        <div className="flex">
+          <Link href="/" className="text-xl font-bold tracking-tight">
+            দ্বিমিক - ২৫
+          </Link>
         </div>
-    )
+        <div className="flex items-center gap-x-6">
+          <Link
+            href="/intro-generator"
+            className="text-sm font-medium transition-colors hover:text-primary"
+          >
+            Generator
+          </Link>
+          <Button variant="ghost" size="icon" onClick={() => toggleTheme()}>
+            {mounted ? (
+              resolvedTheme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )
+            ) : (
+              <div className="h-5 w-5" />
+            )}
+          </Button>
+        </div>
+      </div>
+    </div>
+  )
 }
