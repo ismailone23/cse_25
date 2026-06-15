@@ -15,6 +15,7 @@ const fontMono = Geist_Mono({
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://cse25.frozenismail.xyz"),
   title: {
     default: "দ্বিমিক ২৫ | MIST CSE Batch 25",
     template: "%s | CSE 25",
@@ -38,11 +39,20 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "দ্বিমিক ২৫",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "দ্বিমিক ২৫ | MIST CSE Batch 25",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "দ্বিমিক ২৫ | MIST CSE Batch 25",
     description: "Official hub for the 25th Computer Science & Engineering batch (দ্বিমিক ২৫) of Military Institute of Science and Technology (MIST).",
+    images: ["/og-image.png"],
   },
 };
 
