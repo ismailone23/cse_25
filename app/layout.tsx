@@ -16,22 +16,33 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    default: "CSE Batch 25 | MIST",
+    default: "দ্বিমিক ২৫ | MIST CSE Batch 25",
     template: "%s | CSE 25",
   },
-  description: "Official platform for MIST Computer Science & Engineering Batch 25. Meet the brilliant minds, generate formal introductions, and connect with the community.",
-  keywords: ["MIST", "CSE 25", "Computer Science", "Engineering", "Batch 25", "Students", "Dhaka", "Introduction Generator"],
+  description: "Official hub for the 25th Computer Science & Engineering batch (দ্বিমিক ২৫) of Military Institute of Science and Technology (MIST).",
+  keywords: [
+    "দ্বিমিক ২৫",
+    "MIST CSE 25",
+    "MIST",
+    "Military Institute of Science and Technology",
+    "Computer Science and Engineering",
+    "CSE Batch 25",
+    "MIST CSE Students",
+    "Student Directory",
+    "intro-generator",
+    "brilliant minds"
+  ],
   openGraph: {
-    title: "CSE Batch 25 | MIST",
-    description: "Official platform for MIST Computer Science & Engineering Batch 25. Meet the brilliant minds, generate formal introductions, and connect with the community.",
+    title: "দ্বিমিক ২৫ | MIST CSE Batch 25",
+    description: "Official hub for the 25th Computer Science & Engineering batch (দ্বিমিক ২৫) of Military Institute of Science and Technology (MIST).",
     type: "website",
     locale: "en_US",
-    siteName: "CSE Batch 25",
+    siteName: "দ্বিমিক ২৫",
   },
   twitter: {
     card: "summary_large_image",
-    title: "CSE Batch 25 | MIST",
-    description: "Official platform for MIST Computer Science & Engineering Batch 25. Meet the brilliant minds, generate formal introductions, and connect with the community.",
+    title: "দ্বিমিক ২৫ | MIST CSE Batch 25",
+    description: "Official hub for the 25th Computer Science & Engineering batch (দ্বিমিক ২৫) of Military Institute of Science and Technology (MIST).",
   },
 };
 
