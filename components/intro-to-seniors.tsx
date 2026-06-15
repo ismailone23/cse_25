@@ -10,7 +10,6 @@ interface Student {
   name: string
   track: string
   image: string
-  facebook: string
 }
 
 interface StudentCardProps {
@@ -46,19 +45,6 @@ const StudentCard = ({ student }: StudentCardProps) => {
         <p className="font-mono text-[12px] leading-relaxed tracking-[0.2em] text-gray-500 uppercase dark:text-[#666666]">
           {student.track}
         </p>
-        <div className="mt-8 flex grow items-end">
-          {student.facebook && student.facebook !== "#" ? (
-            <a
-              href={`/api/track-profile?name=${encodeURIComponent(student.name)}&url=${encodeURIComponent(student.facebook)}`}
-              target="_mist"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-gray-500 uppercase transition-all duration-300 group-hover:translate-x-1 hover:text-[#0866FF] dark:text-[#666666] dark:hover:text-purple-400"
-            >
-              <Link className="h-4 w-4 transition-transform group-hover:scale-110" />
-              <span>Profile</span>
-            </a>
-          ) : null}
-        </div>
       </div>
     </motion.div>
   )
@@ -86,7 +72,7 @@ export default function IntroToSeniors() {
             viewport={{ once: true }}
             className="font-display mb-6 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
           >
-            Student{" "}
+            Student
             <span className="bg-linear-to-r from-purple-500 to-[#A885AB] bg-clip-text font-serif text-transparent italic">
               Introduction
             </span>
