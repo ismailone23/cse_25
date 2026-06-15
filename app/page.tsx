@@ -43,7 +43,7 @@ export default function Hero() {
                   .getElementById("intro-to-seniors")
                   ?.scrollIntoView({ behavior: "smooth" })
               }}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.95 }}
               className="group flex cursor-pointer items-center gap-2 rounded-full bg-purple-500 px-8 py-4 font-bold text-[#FFF6FF] transition-shadow hover:shadow-[0_0_30px_rgba(230,76,255,0.4)]"
             >
