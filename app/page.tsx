@@ -30,7 +30,7 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed font-light text-slate-600 md:text-xl dark:text-slate-400">
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed font-base text-slate-600 md:text-xl dark:text-slate-400">
             Step into a journey filled with new experiences, meaningful
             connections, and opportunities to grow. Join us to learn from shared
             stories, gain guidance, and make your beginning unforgettable.
