@@ -2,7 +2,7 @@
 import { motion } from "motion/react"
 import { useState } from "react"
 import studentData from "@/data/students.json"
-import { Link } from "lucide-react"
+import { GraduationCap, MapPin } from "lucide-react"
 import Image from "next/image"
 
 interface Student {
@@ -10,6 +10,8 @@ interface Student {
   name: string
   track: string
   image: string
+  college?: string
+  hometown?: string
 }
 
 interface StudentCardProps {
@@ -19,6 +21,9 @@ interface StudentCardProps {
 }
 
 const StudentCard = ({ student }: StudentCardProps) => {
+  const college = student.college?.trim() || "N/A"
+  const hometown = student.hometown?.trim() || "N/A"
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -36,13 +41,23 @@ const StudentCard = ({ student }: StudentCardProps) => {
           referrerPolicy="no-referrer"
         />
       </div>
-      <div className="flex flex-col justify-center min-w-0">
-        <h3 className="font-display text-base font-bold tracking-tight text-black uppercase dark:text-white truncate">
+      <div className="flex min-w-0 flex-col justify-center">
+        <h3 className="font-display truncate text-base font-bold tracking-tight text-black uppercase dark:text-white">
           {student.name}
         </h3>
-        <p className="font-mono text-[11px] leading-relaxed tracking-[0.2em] text-gray-500 uppercase dark:text-[#888888] mt-1">
+        <p className="mt-1 font-mono text-[11px] leading-relaxed tracking-[0.2em] text-gray-500 uppercase dark:text-[#888888]">
           {student.track}
         </p>
+        <div className="mt-3 space-y-1.5 text-[11px] leading-relaxed text-gray-600 dark:text-[#a1a1a1]">
+          <div className="flex items-center gap-2">
+            <GraduationCap className="h-3.5 w-3.5 shrink-0" />
+            <span className="truncate">{college}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <MapPin className="h-3.5 w-3.5 shrink-0" />
+            <span className="truncate">{hometown}</span>
+          </div>
+        </div>
       </div>
     </motion.div>
   )
@@ -53,7 +68,7 @@ export default function IntroToSeniors() {
   const [visibleCount, setVisibleCount] = useState(21)
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => { return students.length })
+    setVisibleCount(() => students.length)
   }
 
   return (
@@ -70,7 +85,8 @@ export default function IntroToSeniors() {
             viewport={{ once: true }}
             className="font-display mb-6 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
           >
-            Meet our<br />
+            Meet our
+            <br />
             <span className="bg-linear-to-r from-purple-500 to-[#A885AB] bg-clip-text font-serif text-transparent italic">
               CSE 25 Students
             </span>
