@@ -44,12 +44,12 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="flex items-center gap-x-6">
-          {/* <Link
+          <Link
             href="/intro-generator"
-            className="text-sm font-medium transition-colors hover:text-primary"
+            className="text-lg font-medium transition-colors hover:text-primary"
           >
             Generator
-          </Link> */}
+          </Link>
           <Button variant="ghost" size="icon" onClick={() => toggleTheme()}>
             {mounted ? (
               resolvedTheme === "dark" ? (
